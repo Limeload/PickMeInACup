@@ -7,7 +7,7 @@ function DrinkPage({searchString}) {
 const [coffeeArray, setCoffeeArray] = useState([]);
 
 useEffect(() => {
-  fetch("http://localhost:3001/caffine")
+  fetch("http://localhost:3001/caffeine")
   .then((response) => response.json())
   .then((data) => setCoffeeArray(data))
 }, []);
@@ -20,14 +20,14 @@ function handleAddDrink(newDrink) {
     setCoffeeArray([...coffeeArray, newDrink]);
   }
 
-  function handleClick(addToCart) {
-    fetch(`http://localhost:3001/caffine/${addToCart.id}`, {
+  function handleClick(addToFav) {
+    fetch(`http://localhost:3001/caffeine/${addToFav.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        isFavorited: addToCart.isFavorited ? false : true,
+        isFavorited: addToFav.isFavorited ? false : true,
       }),
     })
       .then((response) => response.json())
